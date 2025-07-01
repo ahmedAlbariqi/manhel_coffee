@@ -18,7 +18,6 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-# INSTALLED_APPS (الشكل الصحيح والمُعدّل)
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -27,7 +26,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # تطبيقات المشروع - بالتحديد الكامل
+    # --- تطبيقات Cloudinary ---
+    'cloudinary',
+    'cloudinary_storage',
+    # -------------------------
+
+    # تطبيقات المشروع
     'apps.products.apps.ProductsConfig',
     'apps.orders.apps.OrdersConfig',
     'apps.users.apps.UsersConfig',
@@ -66,7 +70,7 @@ WSGI_APPLICATION = 'manhel_coffee.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
+# ... (يبقى كما هو)
 
 DATABASES = {
     'default': {
@@ -75,52 +79,51 @@ DATABASES = {
     }
 }
 
-
 # Password validation
-# https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
+# ... (يبقى كما هو)
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    { 'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator', },
+    { 'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator', },
+    { 'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator', },
+    { 'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator', },
 ]
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/5.2/topics/i18n/
+# ... (يبقى كما هو)
 
 LANGUAGE_CODE = 'ar'
-
 TIME_ZONE = 'Asia/Riyadh'
-
 USE_I18N = True
-
 USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.2/howto/static-files/
+# ... (يبقى كما هو)
 
 STATIC_URL = 'static/'
-
-# --- الإضافة الجديدة هنا ---
-# تحديد مسار المجلد "static" الرئيسي للمشروع
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
-# --- نهاية الإضافة ---
+
+# --- إعدادات Cloudinary لتخزين الملفات المرفوعة ---
+MEDIA_URL = '/media/' 
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+# ----------------------------------------------------
 
 
 # Default primary key field type
-# https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
+# ... (يبقى كما هو)
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# =================================================================
+#       إعدادات حسابك في CLOUDINARY (املأها بمعلوماتك)
+# =================================================================
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'CLOUDINARY_URL=cloudinary://<your_api_key>:<your_api_secret>@da4etlrox',
+    'API_KEY': '851112187266151',
+    'API_SECRET': 'trck2cJuBcRIcn-GPVBSTFAK8iw',
+}
