@@ -112,6 +112,14 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+# --- الإضافة الجديدة هنا ---
+# تحديد مسار المجلد "static" الرئيسي للمشروع
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
+# --- نهاية الإضافة ---
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
